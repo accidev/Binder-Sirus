@@ -29,12 +29,10 @@ function Binder_OnEvent(self, event, ...)
 	end
 end
 
--- This appears in your chat frame
 function out_frame(text)
 	DEFAULT_CHAT_FRAME:AddMessage(text)
 end
 
--- This appears on the top of your screen
 function out(text)
 	UIErrorsFrame:AddMessage(text, 1.0, 1.0, 0, 1, 10)
 end
@@ -44,7 +42,6 @@ function Binder_Toggle()
 	Selection = false;
 	if (frame) then
 		if (frame:IsVisible()) then
-			-- When the Frame Goes away
 			frame:Hide();
 			Binder_Title:Hide();
 			Description_InputBox:Hide();
@@ -61,7 +58,6 @@ function Binder_Toggle()
 			Name_InputBox:SetText("");
 			Description_InputBox:SetText("");
 		else
-			-- When the Frame is Shown again
 			frame:Show();
 			Binder_Title:Show();
 			Name_Input_Frame:Show();
@@ -86,12 +82,10 @@ function Binder_Toggle()
 	end
 end
 
--- Global Variables
 ProfileName_OnButton = "";
 Currently_Selected_Profile_Num = 0;
 Selection = false;
 
--- The Scrolling Frame
 function BinderScrollBar_Update()
 	local line;
 	local lineplusoffset;
@@ -140,32 +134,30 @@ function BinderScrollBar_Update()
 	end
 end
 
--- When you click on a profile
 function ProfileSelection_OnClick(self)
 	ProfileName_OnButton = self:GetText()
 
-	-- Sets Currently_Selected_Profile_Num to the profile number on button you pushed
 	for i = 1, Binder_Settings.ProfilesCreated do
-		if (ProfileName_OnButton ~= Binder_Settings.Profiles[i].Name) then
-		end
 		if (ProfileName_OnButton == Binder_Settings.Profiles[i].Name) then
 			Currently_Selected_Profile_Num = i
 		end
 	end
-	Description_Update(Currently_Selected_Profile_Num)
+
+	if Currently_Selected_Profile_Num ~= 0 then
+		Description_Update(Currently_Selected_Profile_Num)
+	end
 	Selection = true
 
 	BinderScrollBar_Update()
 end
 
 function Description_Update(profilenum)
-	if (profilenum == nil) then
+	if (profilenum == nil) or (Binder_Settings.Profiles[profilenum] == nil) then
+		Description_Frame_Text2:SetText("")
 	else
 		Description_Frame_Text2:SetText(Binder_Settings.Profiles[profilenum].Description)
 	end
 end
-
-----------------------------------------------------------------------
 
 function Create_Button_OnUpdate()
 	if (Name_InputBox:GetText() == "") then
@@ -175,7 +167,6 @@ function Create_Button_OnUpdate()
 	end
 end
 
--- Creation on hover stuff
 function Binder_CreateButton_Details(tt, ldb)
 	tt:SetText(
 		"Создаст новый профиль привязок клавиш с введенным именем, используя текущие привязки клавиш. (Описание необязательно)")
@@ -194,7 +185,6 @@ Binder_Settings = {
 	Profiles = {}
 }
 
--- The Almighty Button that WILL create your new profile
 function Create_OnClick(arg1)
 	local exists = false;
 
@@ -218,16 +208,13 @@ function Create_OnClick(arg1)
 			The_Binds = {}
 		}
 
-		-- Creates the Bind Table and saves all the binds to it
 		Create_Binds(NewProfileNum)
 
-		-- Updates the number of profiles created
 		Binder_Settings.ProfilesCreated = NewProfileNum
 
 		out_frame("Binder Профиль создан: " .. Name_InputBox:GetText())
 		out("Profile Создан: " .. Binder_Settings.Profiles[Binder_Settings.ProfilesCreated].Name)
 
-		-- If something is written in the Description box when saved, this shows in the chat screen
 		if (Description_InputBox:GetText() ~= "") then
 			out_frame("Описание: " .. Description_InputBox:GetText())
 		end
@@ -253,11 +240,10 @@ function Create_Binds(profileNum)
 	end
 end
 
--- Minimap coding
 BinderMinimapSettings = {
 	Checkbox = nil,
 	xposition = 300,
-	yposition = 0, -- default position of the minimap icon
+	yposition = 0,
 }
 
 function Binder_MinimapButton_OnLoad()
@@ -345,7 +331,6 @@ function Minimap_Checkbox_OnUpdate()
 	end
 end
 
--- Stuff for the Apply Button
 function Defaults_OnClick(arg1)
 	LoadBindings(0)
 	SaveBindings(2)
@@ -416,7 +401,6 @@ function Binder_ApplyButton_OnEnter(self)
 	Binder_ApplyButton_Details(GameTooltip)
 end
 
--- Stuff for the Update Button
 function Update_Profile()
 	local TheAction, BindingOne, BindingTwo;
 
@@ -456,7 +440,6 @@ function Binder_UpdateButton_OnEnter(self)
 	Binder_UpdateButton_Details(GameTooltip)
 end
 
--- Stuff for the Delete Button
 function Binder_DeleteButton_Details(tt, ldb)
 	tt:SetText("ВНИМАНИЕ!!! Если вы удалите профиль, вы НЕ сможете его восстановить. Будьте осторожны...")
 end
@@ -470,6 +453,24 @@ function Binder_DeleteButton_OnEnter(self)
 end
 
 function Delete_OnClick(arg1)
+	if ProfileName_OnButton == nil or ProfileName_OnButton == "" then
+		local profileFound = false
+		for i = 1, Binder_Settings.ProfilesCreated do
+			if Binder_Settings.Profiles[i].Name == nil or Binder_Settings.Profiles[i].Name == "" then
+				Currently_Selected_Profile_Num = i
+				profileFound = true
+				break
+			end
+		end
+
+		if not profileFound then
+			out_frame("Ошибка: Профиль не выбран или профиль без имени не найден для удаления.")
+			return
+		else
+			ProfileName_OnButton = "Профиль без имени"
+		end
+	end
+
 	out_frame("Профиль " .. ProfileName_OnButton .. " удален")
 	if (Currently_Selected_Profile_Num < Binder_Settings.ProfilesCreated) then
 		for i = Currently_Selected_Profile_Num, Binder_Settings.ProfilesCreated - 1 do
