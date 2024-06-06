@@ -1,5 +1,5 @@
 function Binder_OnLoad(self)
-	out_frame("Binder is Loaded. Use /binder for help");
+	out_frame("Binder загружен. Пиши /binder для помощи");
 	self:RegisterEvent("ADDON_LOADED");
 
 	SLASH_BINDER1 = "/binder";
@@ -10,13 +10,13 @@ function Binder_OnLoad(self)
 		elseif command == "toggle" then
 			Binder_Toggle();
 		elseif command == "info" then
-			out_frame("Created by: Tensai");
-			out_frame("Last updated: 3/30/2014")
-			out_frame("Supports storing profiles of keybinds upto 2 keys per action.")
+			out_frame("Оптимизировано и переведено: Accidev");
+			out_frame("Обновлено: 6/6/2024")
+			out_frame("Поддерживает сохранение биндов для WoW Sirus + ElvUI.")
 		else
-			out_frame("Syntax for Binder slash commands:");
-			out_frame("  - /binder toggle - Toggles main binder window");
-			out_frame("  - /binder load (name) - Loads profile 'name', case sensitive");
+			out_frame("Команды Binder:");
+			out_frame("  - /binder toggle - Открывает основное окно.");
+			out_frame("  - /binder load (name) - Загружает профиль с 'name', регистр учитывается.");
 		end
 	end
 	LibKeyBound = LibStub('LibKeyBound-1.0')
@@ -178,7 +178,7 @@ end
 -- Creation on hover stuff
 function Binder_CreateButton_Details(tt, ldb)
 	tt:SetText(
-		"This will create a new Keybind Profile with|nthe inputed name using your current Keybinds.|n(Description is optional)")
+		"Создаст новый профиль привязок клавиш с введенным именем, используя текущие привязки клавиш. (Описание необязательно)")
 end
 
 function Binder_CreateButton_OnEnter(self)
@@ -202,8 +202,8 @@ function Create_OnClick(arg1)
 		namecheck = Binder_Settings.Profiles[i].Name
 		if (Name_InputBox:GetText() == namecheck) then
 			exists = true
-			out_frame("Profile '" .. Binder_Settings.Profiles[i].Name .. "' not created because it already exists.")
-			out("Profile '" .. Binder_Settings.Profiles[i].Name .. "' not created because it already exists.")
+			out_frame("Профиль '" .. Binder_Settings.Profiles[i].Name .. "' не создан, потому что он уже существует.")
+			out("Профиль '" .. Binder_Settings.Profiles[i].Name .. "' не создан, потому что он уже существует.")
 			Name_InputBox:SetText("")
 		end
 	end
@@ -224,12 +224,12 @@ function Create_OnClick(arg1)
 		-- Updates the number of profiles created
 		Binder_Settings.ProfilesCreated = NewProfileNum
 
-		out_frame("Binder Profile Created: " .. Name_InputBox:GetText())
-		out("Profile Created: " .. Binder_Settings.Profiles[Binder_Settings.ProfilesCreated].Name)
+		out_frame("Binder Профиль создан: " .. Name_InputBox:GetText())
+		out("Profile Создан: " .. Binder_Settings.Profiles[Binder_Settings.ProfilesCreated].Name)
 
 		-- If something is written in the Description box when saved, this shows in the chat screen
 		if (Description_InputBox:GetText() ~= "") then
-			out_frame("Description: " .. Description_InputBox:GetText())
+			out_frame("Описание: " .. Description_InputBox:GetText())
 		end
 
 		Name_InputBox:SetText("");
@@ -305,7 +305,7 @@ function Binder_MinimapButton_OnEnter(self)
 end
 
 function Binder_MinimapButton_Details(tt, ldb)
-	tt:SetText("Binder|n|nLeft Click: Open Frame|nRight Click: Drag)")
+	tt:SetText("Binder|n|nЛевый клик: Открыть окно|nПравый клик: Переместить)")
 end
 
 function Minimap_Reset(arg1)
@@ -315,7 +315,7 @@ function Minimap_Reset(arg1)
 end
 
 function Minimap_Reset_Details(tt, ldb)
-	tt:SetText("Will reset the position of the|nminimap button to center screen")
+	tt:SetText("Сбросит позицию кнопки |nна миникарте в центр экрана")
 end
 
 function Minimap_Reset_OnEnter(self)
@@ -373,7 +373,7 @@ function Load_Profile(profile_name)
 	end
 
 	if (Profile_Num == nil) then
-		out_frame("Binder Profile '" .. profile_name .. "' not found.")
+		out_frame("Binder Профиль '" .. profile_name .. "' не найден.")
 	else
 		RemoveAllBinds();
 
@@ -391,7 +391,7 @@ function Load_Profile(profile_name)
 
 		SaveBindings(2)
 		LoadBindings(2)
-		out_frame("Binder Profile " .. profile_name .. " has been loaded")
+		out_frame("Binder Профиль " .. profile_name .. " загружен.")
 	end
 end
 
@@ -405,7 +405,7 @@ function Apply_Button_OnUpdate()
 end
 
 function Binder_ApplyButton_Details(tt, ldb)
-	tt:SetText("This Button will Apply|nthe currently selected|nBinder profile")
+	tt:SetText("Эта кнопка применит|nтекущий выбранный|nпрофиль Binder")
 end
 
 function Binder_ApplyButton_OnEnter(self)
@@ -429,10 +429,10 @@ function Update_Profile()
 		}
 	end
 
-	out_frame("Binder Profile: " ..
-		Binder_Settings.Profiles[Currently_Selected_Profile_Num].Name .. ", has been updated to current Binds.")
-	out("Binder Profile: " ..
-		Binder_Settings.Profiles[Currently_Selected_Profile_Num].Name .. ", has been updated to current Binds.")
+	out_frame("Binder Профиль: " ..
+		Binder_Settings.Profiles[Currently_Selected_Profile_Num].Name .. ", обновлен до текущих биндов.")
+	out("Binder Профиль: " ..
+		Binder_Settings.Profiles[Currently_Selected_Profile_Num].Name .. ", обновлен до текущих биндов.")
 end
 
 function Update_Button_OnUpdate()
@@ -445,7 +445,7 @@ function Update_Button_OnUpdate()
 end
 
 function Binder_UpdateButton_Details(tt, ldb)
-	tt:SetText("This Button will Update|nthe Bindings of the currently|nselected Binder profile")
+	tt:SetText("Эта кнопка обновит привязки текущего выбранного профиля Binder")
 end
 
 function Binder_UpdateButton_OnEnter(self)
@@ -458,7 +458,7 @@ end
 
 -- Stuff for the Delete Button
 function Binder_DeleteButton_Details(tt, ldb)
-	tt:SetText("WARNING!!! If you delete a|nprofile, you CANNOT get it back|n|nSo be careful...")
+	tt:SetText("ВНИМАНИЕ!!! Если вы удалите профиль, вы НЕ сможете его восстановить. Будьте осторожны...")
 end
 
 function Binder_DeleteButton_OnEnter(self)
@@ -470,7 +470,7 @@ function Binder_DeleteButton_OnEnter(self)
 end
 
 function Delete_OnClick(arg1)
-	out_frame("Profile " .. ProfileName_OnButton .. " was deleted")
+	out_frame("Профиль " .. ProfileName_OnButton .. " удален")
 	if (Currently_Selected_Profile_Num < Binder_Settings.ProfilesCreated) then
 		for i = Currently_Selected_Profile_Num, Binder_Settings.ProfilesCreated - 1 do
 			Binder_Settings.Profiles[i] = Binder_Settings.Profiles[i + 1]
@@ -507,13 +507,13 @@ function DeleteAll_Button_OnClick()
 	Currently_Selected_Profile_Num = 0
 	Binder_Settings.ProfilesCreated = 0
 	BinderScrollBar_Update()
-	out_frame("All profiles are erased.")
+	out_frame("Все профили удалены.")
 end
 
 function DeleteAll_Button_OnUpdate()
 	if (Currently_Selected_Profile_Num == 0) then
 	else
-		if (Binder_Settings.Profiles[Currently_Selected_Profile_Num].Name == "Delete All") then
+		if (Binder_Settings.Profiles[Currently_Selected_Profile_Num].Name == "Удалить все") then
 			DeleteAll_Button:Enable()
 		else
 			DeleteAll_Button:Disable()
@@ -522,7 +522,7 @@ function DeleteAll_Button_OnUpdate()
 end
 
 function Close_Button_Details(tt, ldb)
-	tt:SetText("Close")
+	tt:SetText("Закрыть")
 end
 
 function Close_Button_OnEnter(self)

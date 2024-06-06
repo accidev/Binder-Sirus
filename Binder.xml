@@ -96,7 +96,7 @@
 	<Frame name="Binder_Title" hidden="true" frameStrata="LOW" parent="UIParent">
 		<Layers>
 			<Layer level="ARTWORK">
-				<FontString name="$parent_Text1" inherits="GameFontNormal" text="Binder 2.4.0">
+				<FontString name="$parent_Text1" inherits="GameFontNormal" text="Binder 2.5.0">
 					<Anchors>
 						<Anchor point="CENTER"></Anchor>
 					</Anchors>
@@ -161,7 +161,7 @@
 		</Anchors>
 		<Layers>
 			<Layer>
-				<FontString name="$parent_Text1" inherits="GameFontNormal"  justifyH="LEFT" text="Choose Profile:">
+				<FontString name="$parent_Text1" inherits="GameFontNormal"  justifyH="LEFT" text="Выберите профиль:">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="Selection_Frame">
 							<Offset>
@@ -311,7 +311,7 @@
 		</Backdrop>
 		<Layers>
 			<Layer>
-				<FontString name="$parent_Text1" inherits="GameFontNormal"  justifyH="LEFT" text="Description:">
+				<FontString name="$parent_Text1" inherits="GameFontNormal"  justifyH="LEFT" text="Описание:">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="Description_Frame">
 							<Offset>
@@ -323,7 +323,7 @@
         </FontString>
 			</Layer>
 			<Layer>
-				<FontString name="$parent_Text2" inherits="GameFontNormal"  justifyH="LEFT" justifyV="TOP" text="(none)" nonspacewrap="false" maxLines="5">
+				<FontString name="$parent_Text2" inherits="GameFontNormal"  justifyH="LEFT" justifyV="TOP" text="(Ничего нет)" nonspacewrap="false" maxLines="5">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="Description_Frame">
 							<Offset>
@@ -375,7 +375,7 @@
 			</Layer> 
 		</Layers>
 		<Frames>
-			<Button name="Apply_Button" inherits="UIPanelButtonTemplate" text="Apply">
+			<Button name="Apply_Button" inherits="UIPanelButtonTemplate" text="Применить">
 				<Size>
 					<AbsDimension x="220" y="38"/>
 				</Size>
@@ -401,7 +401,7 @@
 					</OnUpdate>
 				</Scripts>
 			</Button>
-			<Button name="Delete_Button" inherits="UIPanelButtonTemplate" text="Delete">
+			<Button name="Delete_Button" inherits="UIPanelButtonTemplate" text="Удалить">
 				<Size>
 					<AbsDimension x="100" y="38"/>
 				</Size>
@@ -428,7 +428,7 @@
 				</Scripts>				
 			</Button>
 
-			<Button name="Update_Button" inherits="UIPanelButtonTemplate" text="Update">
+			<Button name="Update_Button" inherits="UIPanelButtonTemplate" text="Обновить">
 				<Size>
 					<AbsDimension x="100" y="38"/>
 				</Size>
@@ -488,7 +488,7 @@
 			</OnLoad>
 		</Scripts>
 		<Frames>
-			<Button name="UpdateConfirm_Yes" inherits="UIPanelButtonTemplate" text="Yes">
+			<Button name="UpdateConfirm_Yes" inherits="UIPanelButtonTemplate" text="Да">
 				<Size>
 					<AbsDimension x="90" y="30"/>
 				</Size>
@@ -506,7 +506,7 @@
 					</OnClick>
 				</Scripts>
 			</Button>
-			<Button name="UpdateConfirm_No" inherits="UIPanelButtonTemplate" text="No">
+			<Button name="UpdateConfirm_No" inherits="UIPanelButtonTemplate" text="Нет">
 				<Size>
 					<AbsDimension x="90" y="30"/>
 				</Size>
@@ -526,7 +526,7 @@
 		</Frames>
 		<Layers>
 			<Layer>
-				<FontString name="$parent_Text1" inherits="GameFontNormal"  justifyH="LEFT" text="Are you sure you want to Update this Profile?">
+				<FontString name="$parent_Text1" inherits="GameFontNormal"  justifyH="LEFT" text="Вы точно хотите обновить этот профиль?">
 					<Anchors>
 						<Anchor point="CENTER" relativeTo="Update_Confirm_Frame">
 							<Offset>
@@ -569,7 +569,7 @@
 			</OnLoad>
 		</Scripts>
 		<Frames>
-			<Button name="Areyousure_Yes" inherits="UIPanelButtonTemplate" text="Yes">
+			<Button name="Areyousure_Yes" inherits="UIPanelButtonTemplate" text="Да">
 				<Size>
 					<AbsDimension x="90" y="30"/>
 				</Size>
@@ -587,7 +587,7 @@
 					</OnClick>
 				</Scripts>
 			</Button>
-			<Button name="Areyousure_No" inherits="UIPanelButtonTemplate" text="No">
+			<Button name="Areyousure_No" inherits="UIPanelButtonTemplate" text="Нет">
 				<Size>
 					<AbsDimension x="90" y="30"/>
 				</Size>
@@ -607,7 +607,7 @@
 		</Frames>
 		<Layers>
 			<Layer>
-				<FontString name="$parent_Text1" inherits="GameFontNormal"  justifyH="LEFT" text="Are you sure you want to Delete it?">
+				<FontString name="$parent_Text1" inherits="GameFontNormal"  justifyH="LEFT" text="Вы уверены что хотите удалить?">
 					<Anchors>
 						<Anchor point="CENTER" relativeTo="Areyousure_Frame">
 							<Offset>
@@ -633,7 +633,7 @@
 		</Anchors>
 		<Layers>
 			<Layer>
-				<FontString name="$parent_Text1" inherits="GameFontNormal"  justifyH="LEFT" text="Create New Profile:">
+				<FontString name="$parent_Text1" inherits="GameFontNormal"  justifyH="LEFT" text="Создать новый профиль:">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="Creation_Frame">
 							<Offset>
@@ -646,7 +646,7 @@
 			</Layer>
 		</Layers>
 		<Frames>
-			<Button name="Create_Button" inherits="UIPanelButtonTemplate" text="Create">
+			<Button name="Create_Button" inherits="UIPanelButtonTemplate" text="Создать">
 				<Size>
 					<AbsDimension x="80" y="35"/>
 				</Size>
@@ -687,7 +687,7 @@
 		</Size>
 		<Layers>
 			<Layer level="OVERLAY">
-				<FontString name="$parent_Text1" inherits="GameFontNormal"  justifyH="LEFT" text="Enter Name: ">
+				<FontString name="$parent_Text1" inherits="GameFontNormal"  justifyH="LEFT" text="Введите имя: ">
 					<Anchors>
 						<Anchor point="LEFT" relativeTo="Name_Input_Frame">
 							<Offset>
@@ -734,7 +734,7 @@
 		</Size>
 		<Layers>
 			<Layer level="OVERLAY">
-				<FontString name="$parent_Text1" inherits="GameFontNormal"  justifyH="LEFT" text="Enter Description of Keybind Profile: ">
+				<FontString name="$parent_Text1" inherits="GameFontNormal"  justifyH="LEFT" text="Введите описание для профиля: ">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="Description_Input_Frame">
 							<Offset>
@@ -785,7 +785,7 @@
 			<Anchor point="BOTTOMRIGHT" relativeTo="Binder_Frame"/>
 		</Anchors>
 		<Frames>
-			<CheckButton name="Minimap_CheckButton1" inherits="UICheckButtonTemplate" text="Minimap">
+			<CheckButton name="Minimap_CheckButton1" inherits="UICheckButtonTemplate" text="Миникарта">
         <Size>
           <AbsDimension x="20" y="20"/>
         </Size>
@@ -806,7 +806,7 @@
 				</Scripts>
     	</CheckButton>
 		
-			<Button name="Minimap_Reset_Button" inherits="UIPanelButtonTemplate" text="Reset">
+			<Button name="Minimap_Reset_Button" inherits="UIPanelButtonTemplate" text="Сбросить">
 				<Size>
 					<AbsDimension x="100" y="30"/>
 				</Size>
@@ -869,7 +869,7 @@
 			</CheckButton>
 			-->
 			
-			<Button name="Default_Button" inherits="UIPanelButtonTemplate" text="Set Defaults">
+			<Button name="Default_Button" inherits="UIPanelButtonTemplate" text="По умолчанию">
 				<Size>
 					<AbsDimension x="100" y="30"/>
 				</Size>
@@ -885,7 +885,7 @@
 				</Scripts>
 			</Button>
 			
-			<Button name="DeleteAll_Button" inherits="UIPanelButtonTemplate" text="Delete All">
+			<Button name="DeleteAll_Button" inherits="UIPanelButtonTemplate" text="Удалить все">
 				<Size>
 					<AbsDimension x="100" y="30"/>
 				</Size>
@@ -907,7 +907,7 @@
 				</Scripts>
 			</Button>
 			
-			<Button name="KeyBound_Button" inherits="UIPanelButtonTemplate" text="Edit Keybinds">
+			<Button name="KeyBound_Button" inherits="UIPanelButtonTemplate" text="Изменить бинды">
 				<Size>
 					<AbsDimension x="150" y="35"/>
 				</Size>
@@ -925,7 +925,7 @@
 		</Frames>
 		<Layers>
 			<Layer level="OVERLAY">
-				<FontString name="$parent_Text1" inherits="GameFontNormalSmall"  justifyH="LEFT" text="This Button will delete all saved Binder Profiles.|nIn order to activate it you need|nto create a new profile named|n'Delete All' and then select it.">
+				<FontString name="$parent_Text1" inherits="GameFontNormalSmall"  justifyH="LEFT" text="Эта кнопка удалит все профили Binder.|nЧто бы она включилась|nсоздайте профиль с именем|n'Удалить все' и тогда жмите ее.">
 					<Anchors>
 						<Anchor point="BOTTOMLEFT" relativeTo="Options_Frame">
 							<Offset>
