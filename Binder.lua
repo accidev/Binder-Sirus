@@ -12,7 +12,7 @@ function Binder_OnLoad(self)
 		elseif command == "info" then
 			out_frame("Оптимизировано и переведено: Accidev");
 			out_frame("Обновлено: 6/6/2024")
-			out_frame("Поддерживает сохранение биндов для WoW Sirus + ElvUI.")
+			out_frame("Поддерживает сохранение биндов для WoW Sirus + ElvUI для Сируса.")
 		else
 			out_frame("Команды Binder:");
 			out_frame("  - /binder toggle - Открывает основное окно.");
@@ -249,7 +249,7 @@ function Create_Binds(profileNum)
 		bindIndex = bindIndex + 1;
 	end
 
-	if IsAddOnLoaded("ElvUI") then
+	if IsAddOnLoaded("ElvUI for Sirus") then
 		bindIndex = SaveElvUIBinds(profileNum, bindIndex);
 	end
 end
