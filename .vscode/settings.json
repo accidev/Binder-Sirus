@@ -1,0 +1,12 @@
+{
+    "Lua.diagnostics.globals": [
+        "SlashCmdList",
+        "FauxScrollFrame_Update",
+        "DEFAULT_CHAT_FRAME",
+        "UIErrorsFrame",
+        "FauxScrollFrame_GetOffset",
+        "CHARACTER_SPECIFIC_KEYBINDINGS",
+        "OKAY",
+        "CANCEL"
+    ]
+}
