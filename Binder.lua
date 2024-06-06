@@ -178,7 +178,7 @@ end
 -- Creation on hover stuff
 function Binder_CreateButton_Details(tt, ldb)
 	tt:SetText(
-	"This will create a new Keybind Profile with|nthe inputed name using your current Keybinds.|n(Description is optional)")
+		"This will create a new Keybind Profile with|nthe inputed name using your current Keybinds.|n(Description is optional)")
 end
 
 function Binder_CreateButton_OnEnter(self)
@@ -211,8 +211,12 @@ function Create_OnClick(arg1)
 	if (exists == true) then
 	else
 		local NewProfileNum = Binder_Settings.ProfilesCreated + 1;
-		Binder_Settings.Profiles[NewProfileNum] = { Name = Name_InputBox:GetText(), Description = Description_InputBox
-		:GetText(), The_Binds = {} }
+		Binder_Settings.Profiles[NewProfileNum] = {
+			Name = Name_InputBox:GetText(),
+			Description = Description_InputBox
+				:GetText(),
+			The_Binds = {}
+		}
 
 		-- Creates the Bind Table and saves all the binds to it
 		Create_Binds(NewProfileNum)
@@ -241,8 +245,11 @@ function Create_Binds(profileNum)
 	local TheAction, BindingOne, BindingTwo;
 	for i = 1, GetNumBindings() do
 		TheAction, BindingOne, BindingTwo = GetBinding(i)
-		Binder_Settings.Profiles[profileNum].The_Binds[i] = { ["TheAction"] = TheAction, ["BindingOne"] = BindingOne,
-			["BindingTwo"] = BindingTwo }
+		Binder_Settings.Profiles[profileNum].The_Binds[i] = {
+			["TheAction"] = TheAction,
+			["BindingOne"] = BindingOne,
+			["BindingTwo"] = BindingTwo
+		}
 	end
 end
 
@@ -415,14 +422,17 @@ function Update_Profile()
 
 	for i = 1, GetNumBindings() do
 		TheAction, BindingOne, BindingTwo = GetBinding(i)
-		Binder_Settings.Profiles[Currently_Selected_Profile_Num].The_Binds[i] = { ["TheAction"] = TheAction,
-			["BindingOne"] = BindingOne, ["BindingTwo"] = BindingTwo }
+		Binder_Settings.Profiles[Currently_Selected_Profile_Num].The_Binds[i] = {
+			["TheAction"] = TheAction,
+			["BindingOne"] = BindingOne,
+			["BindingTwo"] = BindingTwo
+		}
 	end
 
 	out_frame("Binder Profile: " ..
-	Binder_Settings.Profiles[Currently_Selected_Profile_Num].Name .. ", has been updated to current Binds.")
+		Binder_Settings.Profiles[Currently_Selected_Profile_Num].Name .. ", has been updated to current Binds.")
 	out("Binder Profile: " ..
-	Binder_Settings.Profiles[Currently_Selected_Profile_Num].Name .. ", has been updated to current Binds.")
+		Binder_Settings.Profiles[Currently_Selected_Profile_Num].Name .. ", has been updated to current Binds.")
 end
 
 function Update_Button_OnUpdate()
