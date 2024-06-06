@@ -24,9 +24,17 @@ end
 
 function Binder_OnEvent(self, event, ...)
 	if (event == "ADDON_LOADED") then
+		local addonName = ...;
+		if addonName == "ElvUI" then
+			Binder_ElvUI_OnLoad();
+		end
 		Binder_MinimapButton_OnLoad();
 		Minimap_Checkbox_WhenLoaded();
 	end
+end
+
+function Binder_ElvUI_OnLoad()
+	out_frame("ElvUI загружен. Добавлены дополнительные настройки для ElvUI.");
 end
 
 function out_frame(text)
@@ -230,14 +238,41 @@ end
 
 function Create_Binds(profileNum)
 	local TheAction, BindingOne, BindingTwo;
+	local bindIndex = 1;
 	for i = 1, GetNumBindings() do
 		TheAction, BindingOne, BindingTwo = GetBinding(i)
-		Binder_Settings.Profiles[profileNum].The_Binds[i] = {
+		Binder_Settings.Profiles[profileNum].The_Binds[bindIndex] = {
 			["TheAction"] = TheAction,
 			["BindingOne"] = BindingOne,
 			["BindingTwo"] = BindingTwo
 		}
+		bindIndex = bindIndex + 1;
 	end
+
+	if IsAddOnLoaded("ElvUI") then
+		bindIndex = SaveElvUIBinds(profileNum, bindIndex);
+	end
+end
+
+function SaveElvUIBinds(profileNum, bindIndex)
+	local function saveElvUIBarBinds(barNum, bindIndex)
+		for buttonNum = 1, 12 do
+			local buttonName = "ElvUI_Bar" .. barNum .. "Button" .. buttonNum;
+			local bind1, bind2 = GetBindingKey(buttonName);
+			Binder_Settings.Profiles[profileNum].The_Binds[bindIndex] = {
+				["TheAction"] = buttonName,
+				["BindingOne"] = bind1,
+				["BindingTwo"] = bind2
+			}
+			bindIndex = bindIndex + 1;
+		end
+		return bindIndex;
+	end
+
+	for barNum = 6, 10 do
+		bindIndex = saveElvUIBarBinds(barNum, bindIndex);
+	end
+	return bindIndex;
 end
 
 BinderMinimapSettings = {
@@ -362,7 +397,7 @@ function Load_Profile(profile_name)
 	else
 		RemoveAllBinds();
 
-		for i = 1, GetNumBindings() do
+		for i = 1, #Binder_Settings.Profiles[Profile_Num].The_Binds do
 			local TheAction = Binder_Settings.Profiles[Profile_Num].The_Binds[i].TheAction
 			local BindingOne = Binder_Settings.Profiles[Profile_Num].The_Binds[i].BindingOne
 			local BindingTwo = Binder_Settings.Profiles[Profile_Num].The_Binds[i].BindingTwo
@@ -377,6 +412,22 @@ function Load_Profile(profile_name)
 		SaveBindings(2)
 		LoadBindings(2)
 		out_frame("Binder Профиль " .. profile_name .. " загружен.")
+	end
+end
+
+function LoadElvUIBinds(profileNum)
+	local function loadElvUIBarBinds(barNum)
+		for buttonNum = 1, 12 do
+			local binds = Binder_Settings.Profiles[profileNum].The_Binds[(barNum - 6) * 12 + buttonNum];
+			if binds then
+				SetBinding(binds.BindingOne, binds.TheAction)
+				SetBinding(binds.BindingTwo, binds.TheAction)
+			end
+		end
+	end
+
+	for barNum = 6, 10 do
+		loadElvUIBarBinds(barNum);
 	end
 end
 
